@@ -78,6 +78,7 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
+  adapter: postgresql
   primary: &primary_production
     <<: *default
     database: restaurant_app1_production
