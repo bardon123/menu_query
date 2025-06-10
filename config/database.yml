@@ -19,7 +19,6 @@ default: &default
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
-
 development:
   <<: *default
   database: restaurant_app1_development
@@ -96,3 +95,5 @@ production:
     <<: *primary_production
     database: restaurant_app1_production_cable
     migrations_paths: db/cable_migrate
+
+  url: <%= ENV["DATABASE_URL"] %>
