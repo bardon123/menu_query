@@ -14,7 +14,7 @@ test:
 production:
   adapter: postgresql
   url: <%= ENV["DATABASE_URL"] %>
-
-cable:
-  adapter: postgresql
-  url: <%= ENV["DATABASE_URL"] %>
+  # Action Cable config for production
+  cable:
+    adapter: postgresql
+    url: <%= ENV["DATABASE_URL"] %>
