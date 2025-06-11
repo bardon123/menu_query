@@ -79,22 +79,8 @@ test:
 #
 production:
   adapter: postgresql
-  primary: &primary_production
-    <<: *default
-    database: restaurant_app1_production
-    username: restaurant_app1
-    password: <%= ENV["RESTAURANT_APP1_DATABASE_PASSWORD"] %>
-  cache:
-    <<: *primary_production
-    database: restaurant_app1_production_cache
-    migrations_paths: db/cache_migrate
-  queue:
-    <<: *primary_production
-    database: restaurant_app1_production_queue
-    migrations_paths: db/queue_migrate
-  cable:
-    <<: *primary_production
-    database: restaurant_app1_production_cable
-    migrations_paths: db/cable_migrate
-
   url: <%= ENV["DATABASE_URL"] %>
+
+  cable:
+    adapter: postgresql
+    url: <%= ENV["DATABASE_URL"] %>
