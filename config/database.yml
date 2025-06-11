@@ -14,4 +14,3 @@ test:
 production:
   adapter: postgresql
   url: <%= ENV["DATABASE_URL"] %>
-  # Action Cable uses the same database as production by default
