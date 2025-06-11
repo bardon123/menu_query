@@ -12,8 +12,9 @@ test:
   database: restaurant_app1_test
 
 production:
-  adapter: postgresql
-  url: <%= ENV["DATABASE_URL"] %>
+  primary:
+    url: postgresql://menu_postgres_38t2_user:FqybaBQF2FlrlXXMFkdpyTKhLfHnfSd6@dpg-d141n48gjchc73fmdtd0-a.singapore-postgres.render.com/menu_postgres_38t2
+    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   queue:
-    adapter: postgresql
-    url: <%= ENV["DATABASE_URL"] %>
+    url: postgresql://menu_postgres_38t2_user:FqybaBQF2FlrlXXMFkdpyTKhLfHnfSd6@dpg-d141n48gjchc73fmdtd0-a.singapore-postgres.render.com/menu_postgres_38t2
+    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
