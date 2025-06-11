@@ -13,11 +13,11 @@ test:
 
 production:
   primary:
-    url: postgresql://menu_postgres_38t2_user:FqybaBQF2FlrlXXMFkdpyTKhLfHnfSd6@dpg-d141n48gjchc73fmdtd0-a.singapore-postgres.render.com/menu_postgres_38t2
+    url: <%= ENV["DATABASE_URL"] %>
     pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   queue:
-    url: postgresql://menu_postgres_38t2_user:FqybaBQF2FlrlXXMFkdpyTKhLfHnfSd6@dpg-d141n48gjchc73fmdtd0-a.singapore-postgres.render.com/menu_postgres_38t2
+    url: <%= ENV["DATABASE_URL"] %>
     pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   cache:
-    url: postgresql://menu_postgres_38t2_user:FqybaBQF2FlrlXXMFkdpyTKhLfHnfSd6@dpg-d141n48gjchc73fmdtd0-a.singapore-postgres.render.com/menu_postgres_38t2
+    url: <%= ENV["DATABASE_URL"] %>
     pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
