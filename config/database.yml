@@ -18,3 +18,6 @@ production:
   queue:
     url: postgresql://menu_postgres_38t2_user:FqybaBQF2FlrlXXMFkdpyTKhLfHnfSd6@dpg-d141n48gjchc73fmdtd0-a.singapore-postgres.render.com/menu_postgres_38t2
     pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  cache:
+    url: postgresql://menu_postgres_38t2_user:FqybaBQF2FlrlXXMFkdpyTKhLfHnfSd6@dpg-d141n48gjchc73fmdtd0-a.singapore-postgres.render.com/menu_postgres_38t2
+    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
