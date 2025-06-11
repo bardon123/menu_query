@@ -8,15 +8,15 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-# Clear existing data
-Menu.destroy_all
-Section.destroy_all
-Item.destroy_all
-ModifierGroup.destroy_all
-Modifier.destroy_all
+# Clear existing data in the correct order to avoid foreign key violations
 MenuSection.destroy_all
 SectionItem.destroy_all
 ItemModifierGroup.destroy_all
+Modifier.destroy_all
+ModifierGroup.destroy_all
+Item.destroy_all
+Section.destroy_all
+Menu.destroy_all
 
 # Create a menu
 menu = Menu.create!(
