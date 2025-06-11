@@ -16,8 +16,8 @@ gem "puma", ">= 5.0"
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 
-gem 'graphql'
-gem 'graphiql-rails'
+gem "graphql"
+gem "graphiql-rails"
 
 
 # Use the database-backed adapters for Rails.cache, Active Job, and Action Cable

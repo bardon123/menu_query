@@ -8,6 +8,5 @@ module Mutations
     argument :price, Float, required: true
 
     type Types::ModifierType
-    
   end
 end

@@ -10,8 +10,8 @@ module Types
       context.schema.object_from_id(id, context)
     end
 
-    field :nodes, [Types::NodeType, null: true], null: true, description: "Fetches a list of objects given a list of IDs." do
-      argument :ids, [ID], required: true, description: "IDs of the objects."
+    field :nodes, [ Types::NodeType, null: true ], null: true, description: "Fetches a list of objects given a list of IDs." do
+      argument :ids, [ ID ], required: true, description: "IDs of the objects."
     end
 
     def nodes(ids:)
@@ -21,7 +21,7 @@ module Types
     # Add root-level fields here.
     # They will be entry points for queries on your schema.
 
-    field :menus, [Types::MenuType], null: false
+    field :menus, [ Types::MenuType ], null: false
     def menus
       Menu.all
     end
@@ -33,7 +33,7 @@ module Types
       Menu.find_by(id: id)
     end
 
-    field :sections, [Types::SectionType], null: false
+    field :sections, [ Types::SectionType ], null: false
     def sections
       Section.all
     end
@@ -45,7 +45,7 @@ module Types
       Section.find_by(id: id)
     end
 
-    field :items, [Types::ItemType], null: false
+    field :items, [ Types::ItemType ], null: false
     def items
       Item.all
     end
@@ -57,7 +57,7 @@ module Types
       Item.find_by(id: id)
     end
 
-    field :modifier_groups, [Types::ModifierGroupType], null: false
+    field :modifier_groups, [ Types::ModifierGroupType ], null: false
     def modifier_groups
       ModifierGroup.all
     end
@@ -69,7 +69,7 @@ module Types
       ModifierGroup.find_by(id: id)
     end
 
-    field :modifiers, [Types::ModifierType], null: false
+    field :modifiers, [ Types::ModifierType ], null: false
     def modifiers
       Modifier.all
     end

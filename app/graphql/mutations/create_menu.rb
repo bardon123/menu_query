@@ -2,7 +2,6 @@
 
 module Mutations
   class CreateMenu < BaseMutation
- 
     argument :label, String, required: true
     argument :state, String, required: true
     argument :start_date, GraphQL::Types::ISO8601Date, required: true

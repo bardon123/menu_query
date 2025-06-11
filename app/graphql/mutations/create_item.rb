@@ -8,6 +8,5 @@ module Mutations
     argument :label, String, required: true
     argument :description, String, required: false
     argument :price, Float, required: true
-    
   end
 end
