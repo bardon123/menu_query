@@ -17,8 +17,7 @@ gem "puma", ">= 5.0"
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 
 gem 'graphql'
-
-  gem 'graphiql-rails'
+gem 'graphiql-rails'
 
 
 # Use the database-backed adapters for Rails.cache, Active Job, and Action Cable
