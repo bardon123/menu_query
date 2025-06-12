@@ -7,5 +7,6 @@ module Types
     field :create_item, mutation: Mutations::CreateItem
     field :create_menu, mutation: Mutations::CreateMenu
     field :create_section, mutation: Mutations::CreateSection
+    field :register_user, mutation: Mutations::RegisterUser
   end
 end
