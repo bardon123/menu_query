@@ -6,17 +6,17 @@ module Mutations
       argument :modifier_ids, [ID], required: false
     end
 
-    argument :items, [OrderItemInput], required: true
+    argument :input, Types::CreateOrderInput, required: true
 
     field :order, Types::OrderType, null: true
     field :errors, [String], null: false
 
-    def resolve(items:)
+    def resolve(input:)
       user = context[:current_user]
       return { order: nil, errors: ["Authentication required"] } unless user
 
       order = user.orders.build
-      items.each do |item_input|
+      input[:items].each do |item_input|
         order_item = order.order_items.build(
           item_id: item_input[:item_id],
           quantity: item_input[:quantity],
