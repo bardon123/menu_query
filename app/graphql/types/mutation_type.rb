@@ -8,7 +8,7 @@ module Types
     field :create_menu, mutation: Mutations::CreateMenu
     field :create_section, mutation: Mutations::CreateSection
     field :register_user, mutation: Mutations::RegisterUser
-    field :create_order, mutation: Mutations::CreateOrder
+    field :create_order2, mutation: Mutations::CreateOrder2
     field :login_user, mutation: Mutations::LoginUser
   end
 end

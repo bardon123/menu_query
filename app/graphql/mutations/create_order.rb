@@ -1,5 +1,5 @@
 module Mutations
-  class CreateOrder < BaseMutation
+  class CreateOrder2 < BaseMutation
     class OrderItemInput < Types::BaseInputObject
       argument :item_id, ID, required: true
       argument :quantity, Integer, required: true
