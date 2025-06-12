@@ -9,5 +9,6 @@ module Types
     field :create_section, mutation: Mutations::CreateSection
     field :register_user, mutation: Mutations::RegisterUser
     field :create_order, mutation: Mutations::CreateOrder
+    field :login_user, mutation: Mutations::LoginUser
   end
 end
