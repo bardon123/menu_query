@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   if Rails.env.development? || Rails.env.production?
     mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
   end
+
+  root to: proc { [200, {}, ['API is running']] }
 end
