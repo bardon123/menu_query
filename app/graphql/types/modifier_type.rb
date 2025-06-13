@@ -10,9 +10,14 @@ module Types
     field :price_override, Float
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
+    field :price, Float, null: false
 
     field :item, Types::ItemType, null: true
     field :modifier_group, Types::ModifierGroupType, null: true
     field :label, String, null: true
+
+    def price
+      object.item&.price || 0
+    end
   end
 end
