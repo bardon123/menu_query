@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class GraphqlController < ApplicationController
+  include DeviseTokenAuth::Concerns::SetUserByToken
   # If accessing from outside this domain, nullify the session
   # This allows for outside API access while preventing CSRF attacks,
   # but you'll have to authenticate your user separately
@@ -8,6 +9,10 @@ class GraphqlController < ApplicationController
 
   # Use DeviseTokenAuth's method to set current_user from headers
   before_action :set_user_by_token
+
+  def resource_name
+    :user
+  end
 
   def execute
     variables = prepare_variables(params[:variables])
