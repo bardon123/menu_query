@@ -55,6 +55,7 @@ toppings = ModifierGroup.create!(identifier: 'toppings', label: 'Toppings', sele
 ItemModifierGroup.create!(item: item3, modifier_group: sauces)
 ItemModifierGroup.create!(item: item3, modifier_group: toppings)
 ItemModifierGroup.create!(item: item4, modifier_group: toppings)
+ItemModifierGroup.create!(item: item4, modifier_group: sauces)
 
 # Modifiers (must be Components)
 cheese = Item.create!(item_type: 'Component', identifier: 'cheese', label: 'Cheese', description: 'Extra cheese', price: 1.0)
