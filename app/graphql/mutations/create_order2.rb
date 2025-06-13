@@ -25,12 +25,21 @@ module Mutations
           quantity: item_input[:quantity],
           price: item.price
         )
-        total_price += item.price * item_input[:quantity]
-        # Optionally, add modifier prices to total_price here if needed
+        item_total = item.price * item_input[:quantity]
+
+        if item_input[:modifier_ids].present?
+          item_input[:modifier_ids].each do |mod_id|
+            modifier = Modifier.find(mod_id)
+            order_item.modifiers << modifier
+            item_total += (modifier.item.price * item_input[:quantity]) if modifier.item&.price
+          end
+        end
+
+        total_price += item_total
       end
 
       order.total_price = total_price
-      order.status = "pending" # or whatever default status you use
+      order.status = "pending"
 
       if order.save
         { order: order, errors: [] }

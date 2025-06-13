@@ -1,6 +1,8 @@
 class Modifier < ApplicationRecord
   belongs_to :item
   belongs_to :modifier_group
+  has_many :order_item_modifiers
+  has_many :order_items, through: :order_item_modifiers
 
   validates :label, presence: true
   validate :item_must_be_component
