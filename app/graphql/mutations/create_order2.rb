@@ -16,16 +16,25 @@ module Mutations
       return { order: nil, errors: ["Authentication required"] } unless user
 
       order = user.orders.build
+      total_price = 0
+
       items.each do |item_input|
+        item = Item.find(item_input[:item_id])
         order_item = order.order_items.build(
-          item_id: item_input[:item_id],
+          item_id: item.id,
           quantity: item_input[:quantity],
-          price: Item.find(item_input[:item_id]).price
+          price: item.price
         )
+        total_price += item.price * item_input[:quantity]
         if item_input[:modifier_ids]
           order_item.modifier_ids = item_input[:modifier_ids]
+          # Optionally, add modifier prices to total_price here if needed
         end
       end
+
+      order.total_price = total_price
+      order.status = "pending" # or whatever default status you use
+
       if order.save
         { order: order, errors: [] }
       else
