@@ -80,5 +80,11 @@ module Types
     def modifier(id:)
       Modifier.find_by(id: id)
     end
+
+    field :orders, [Types::OrderType], null: false
+
+    def orders
+      Order.all
+    end
   end
 end
