@@ -6,8 +6,8 @@ class GraphqlController < ApplicationController
   # but you'll have to authenticate your user separately
   
 
-  # Ensure user is authenticated for mutations that require it
-  before_action :authenticate_user!
+  # Use DeviseTokenAuth's method to set current_user from headers
+  before_action :set_user_by_token
 
   def execute
     variables = prepare_variables(params[:variables])
