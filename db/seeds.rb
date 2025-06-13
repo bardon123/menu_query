@@ -52,7 +52,7 @@ sauces = ModifierGroup.create!(identifier: 'sauces', label: 'Sauces', selection_
 toppings = ModifierGroup.create!(identifier: 'toppings', label: 'Toppings', selection_required_min: 0, selection_required_max: 3)
 
 # Attach modifier groups to items
-ItemModifierGroup.create!(item: item3, modifier_group: sauces)
+# ItemModifierGroup.create!(item: item3, modifier_group: sauces)
 ItemModifierGroup.create!(item: item3, modifier_group: toppings)
 ItemModifierGroup.create!(item: item4, modifier_group: toppings)
 ItemModifierGroup.create!(item: item4, modifier_group: sauces)
