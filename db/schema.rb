@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_12_033836) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_13_082324) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -92,6 +92,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_12_033836) do
     t.index ["modifier_group_id"], name: "index_modifiers_on_modifier_group_id"
   end
 
+  create_table "order_item_modifiers", force: :cascade do |t|
+    t.bigint "order_item_id", null: false
+    t.bigint "modifier_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["modifier_id"], name: "index_order_item_modifiers_on_modifier_id"
+    t.index ["order_item_id"], name: "index_order_item_modifiers_on_order_item_id"
+  end
+
   create_table "order_items", force: :cascade do |t|
     t.bigint "order_id", null: false
     t.bigint "item_id", null: false
@@ -109,7 +118,22 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_12_033836) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "promo_code_id"
+    t.index ["promo_code_id"], name: "index_orders_on_promo_code_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "promo_codes", force: :cascade do |t|
+    t.string "code"
+    t.string "discount_type"
+    t.decimal "discount_value"
+    t.datetime "expires_at"
+    t.integer "usage_limit"
+    t.integer "times_used"
+    t.boolean "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["code"], name: "index_promo_codes_on_code", unique: true
   end
 
   create_table "section_items", force: :cascade do |t|
@@ -164,8 +188,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_12_033836) do
   add_foreign_key "menu_sections", "sections"
   add_foreign_key "modifiers", "items"
   add_foreign_key "modifiers", "modifier_groups"
+  add_foreign_key "order_item_modifiers", "modifiers"
+  add_foreign_key "order_item_modifiers", "order_items"
   add_foreign_key "order_items", "items"
   add_foreign_key "order_items", "orders"
+  add_foreign_key "orders", "promo_codes"
   add_foreign_key "orders", "users"
   add_foreign_key "section_items", "items"
   add_foreign_key "section_items", "sections"

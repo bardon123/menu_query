@@ -86,5 +86,15 @@ module Types
     def orders
       Order.all
     end
+
+    field :validate_promo_code, Types::PromoCodeType, null: true do
+      argument :code, String, required: true
+    end
+
+    def validate_promo_code(code:)
+      promo = PromoCode.find_by(code: code)
+      return nil unless promo&.valid_for_use?
+      promo
+    end
   end
 end

@@ -65,3 +65,13 @@ ketchup = Item.create!(item_type: 'Component', identifier: 'ketchup', label: 'Ke
 Modifier.create!(item: cheese, modifier_group: toppings, label: 'Extra Cheese')
 Modifier.create!(item: lettuce, modifier_group: toppings, label: 'Lettuce')
 Modifier.create!(item: ketchup, modifier_group: sauces, label: 'Ketchup')
+
+PromoCode.create!(
+  code: "WELCOME10",
+  discount_type: "percent",
+  discount_value: 10,
+  expires_at: 1.month.from_now,
+  usage_limit: 100,
+  times_used: 0,
+  active: true
+)

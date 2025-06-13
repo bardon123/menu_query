@@ -7,11 +7,13 @@ module Mutations
     end
 
     argument :items, [OrderItemInput], required: true
+    argument :promo_code, String, required: false
 
     field :order, Types::OrderType, null: true
     field :errors, [String], null: false
+    field :promo_code, Types::PromoCodeType, null: true
 
-    def resolve(items:)
+    def resolve(items:, promo_code: nil)
       user = context[:current_user]
       return { order: nil, errors: ["Authentication required"] } unless user
 
@@ -38,8 +40,28 @@ module Mutations
         total_price += item_total
       end
 
-      order.total_price = total_price
+      # Promo code logic
+      discount = 0
+      if promo_code.present?
+        promo = PromoCode.find_by(code: promo_code)
+        if promo&.valid_for_use?
+          if promo.discount_type == "percent"
+            discount = total_price * (promo.discount_value / 100.0)
+          elsif promo.discount_type == "amount"
+            discount = promo.discount_value
+          end
+          # Ensure discount does not exceed total
+          discount = [discount, total_price].min
+          # Increment usage
+          promo.increment!(:times_used)
+        else
+          return { order: nil, errors: ["Invalid or expired promo code"] }
+        end
+      end
+
+      order.total_price = total_price - discount
       order.status = "pending"
+      order.promo_code = promo if promo.present?
 
       if order.save
         { order: order, errors: [] }
