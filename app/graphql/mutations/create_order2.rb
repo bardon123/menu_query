@@ -26,10 +26,7 @@ module Mutations
           price: item.price
         )
         total_price += item.price * item_input[:quantity]
-        if item_input[:modifier_ids]
-          order_item.modifier_ids = item_input[:modifier_ids]
-          # Optionally, add modifier prices to total_price here if needed
-        end
+        # Optionally, add modifier prices to total_price here if needed
       end
 
       order.total_price = total_price
